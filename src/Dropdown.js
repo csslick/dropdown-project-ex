@@ -10,16 +10,19 @@ const Dropdown = (element, title, options) => {
       <ul class="dropdown-menu hidden absolute top-[54px] w-full rounded-lg bg-white shadow-lg">
         <li><a class="dropdown-item flex px-4 py-[10px] hover:bg-[#F1F2F5]" href="#">${options.menu1}</a></li>
         <li><a class="dropdown-item flex px-4 py-[10px] hover:bg-[#F1F2F5]" href="#">${options.menu2}</a></li>
-        <li><a class="dropdown-item fle x px-4 py-[10px] hover:bg-[#F1F2F5]" href="#">${options.menu3}</a></li>
+        <li><a class="dropdown-item flex px-4 py-[10px] hover:bg-[#F1F2F5]" href="#">${options.menu3}</a></li>
       </ul>
     </div>
   `
   element.insertAdjacentHTML('beforeend', dropdownHtml)
 
-  // 토글 버튼
-  const toggleBtn = element.querySelector('.dropdown-toggle');
+  // 방금 추가된 드롭다운 요소를 찾기
+  const newDropdown = element.querySelector('.dropdown:last-child');
+
+  // 토글 버튼-새로 추가된 드롭다운 내부에서 버튼을 찾음
+  const toggleBtn = newDropdown.querySelector('.dropdown-toggle');
   // 드롭다운 메뉴
-  const dropdownMenu = element.querySelector('.dropdown-menu');
+  const dropdownMenu = newDropdown.querySelector('.dropdown-menu');
   // 토글 버튼 이벤트
   toggleBtn.addEventListener('click', () => {
     dropdownMenu.classList.toggle('hidden');
