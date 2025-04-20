@@ -4,17 +4,29 @@ const Dropdown = (element, title, options) => {
       <!-- 드롭다운을 열고 닫는 버튼 -->
       <button class="dropdown-toggle flex items-center justify-between rounded-lg bg-linear-to-r from-[#B13EFB] to-[#FF188C] px-4 py-[10px] font-bold text-white hover:cursor-pointer hover:opacity-80" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
         ${title}
-        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6l-6-6z" /></svg>
+        <svg class='transition' xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6l-6-6z" /></svg>
       </button>
       <!-- menu 목록 -->
-      <ul class="dropdown-menu absolute top-[54px] w-full rounded-lg bg-white shadow-lg">
+      <ul class="dropdown-menu hidden absolute top-[54px] w-full rounded-lg bg-white shadow-lg">
         <li><a class="dropdown-item flex px-4 py-[10px] hover:bg-[#F1F2F5]" href="#">${options.menu1}</a></li>
         <li><a class="dropdown-item flex px-4 py-[10px] hover:bg-[#F1F2F5]" href="#">${options.menu2}</a></li>
-        <li><a class="dropdown-item flex px-4 py-[10px] hover:bg-[#F1F2F5]" href="#">${options.menu3}</a></li>
+        <li><a class="dropdown-item fle x px-4 py-[10px] hover:bg-[#F1F2F5]" href="#">${options.menu3}</a></li>
       </ul>
     </div>
   `
   element.insertAdjacentHTML('beforeend', dropdownHtml)
+
+  // 토글 버튼
+  const toggleBtn = element.querySelector('.dropdown-toggle');
+  // 드롭다운 메뉴
+  const dropdownMenu = element.querySelector('.dropdown-menu');
+  // 토글 버튼 이벤트
+  toggleBtn.addEventListener('click', () => {
+    dropdownMenu.classList.toggle('hidden');
+
+    // 토글 버튼 svg 아이콘을 180도 회전시키거나 원래대로 되돌림
+    toggleBtn.querySelector('svg').classList.toggle('rotate-180');
+  });
 
 }
 
