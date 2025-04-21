@@ -10,21 +10,13 @@ document.querySelector('#app').innerHTML = `
 `
 
 Dropdown(
-  document.querySelector('#app nav'), 
+  '#app nav', 
   'Dropdown menu', 
-  {
-    menu1: 'C',
-    menu2: 'Java',
-    menu3: 'Python'
-  }
+  ["c", "java", "python", "javascript"]
 )
 
 Dropdown(
-  document.querySelector('#app nav'), 
+  '#app nav', 
   'Dropdown menu', 
-  {
-    menu1: 'menu1',
-    menu2: 'menu2',
-    menu3: 'menu3'
-  }
+  ["html", "css", "react", "vue"]
 )

@@ -1,4 +1,6 @@
 const Dropdown = (element, title, options) => {
+  console.log(options)
+
   const dropdownHtml = `
     <div class="dropdown relative flex w-[250px] flex-col bg-amber-200">
       <!-- 드롭다운을 열고 닫는 버튼 -->
@@ -8,16 +10,20 @@ const Dropdown = (element, title, options) => {
       </button>
       <!-- menu 목록 -->
       <ul class="dropdown-menu hidden absolute top-[54px] w-full rounded-lg bg-white shadow-lg">
-        <li><a class="dropdown-item flex px-4 py-[10px] hover:bg-[#F1F2F5]" href="#">${options.menu1}</a></li>
-        <li><a class="dropdown-item flex px-4 py-[10px] hover:bg-[#F1F2F5]" href="#">${options.menu2}</a></li>
-        <li><a class="dropdown-item flex px-4 py-[10px] hover:bg-[#F1F2F5]" href="#">${options.menu3}</a></li>
+        ${
+          options.map((item) => {
+            return `<li><a class="dropdown-item flex px-4 py-[10px] hover:bg-[#F1F2F5] border-t border-gray-50" href="#">${item}</a></li>`;
+          }).join('')
+        }        
       </ul>
     </div>
   `
-  element.insertAdjacentHTML('beforeend', dropdownHtml)
+  // element.insertAdjacentHTML('beforeend', dropdownHtml)
+  const el = document.querySelector(element)
+  el.insertAdjacentHTML('beforeend', dropdownHtml)
 
   // 방금 추가된 드롭다운 요소를 찾기
-  const newDropdown = element.querySelector('.dropdown:last-child');
+  const newDropdown = el.querySelector('.dropdown:last-child');
 
   // 토글 버튼-새로 추가된 드롭다운 내부에서 버튼을 찾음
   const toggleBtn = newDropdown.querySelector('.dropdown-toggle');
