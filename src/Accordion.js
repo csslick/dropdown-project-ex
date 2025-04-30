@@ -11,7 +11,7 @@ const Accordion = (element, title, options) => {
       <ul class="dropdown-menu hidden top-[54px] w-full rounded-lg bg-white shadow-lg">
         ${
           options.map((option) => {
-            return `<li><a class="dropdown-item flex px-4 py-[10px] hover:bg-[#F1F2F5]" href="#">${option}</a></li>`
+            return `<li><a class="dropdown-item flex px-4 py-[10px]" href="#">${option}</a></li>`
           }).join('')
         }
       </ul>
