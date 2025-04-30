@@ -1,0 +1,39 @@
+const Accordion = (element, title, options) => {
+  const el = document.querySelector(element)
+  const dropdownHtml = `
+    <div class="dropdown relative flex w-auto flex-col border-b-1 border-gray-400">
+      <!-- 드롭다운을 열고 닫는 버튼 -->
+      <button class="dropdown-toggle flex items-center justify-between rounded-lg bg-white px-4 py-[10px] text-black hover:cursor-pointer hover:opacity-80 text-xl" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+        ${title}
+        <svg class='transition' xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6l-6-6z" /></svg>
+      </button>
+      <!-- menu 목록 -->
+      <ul class="dropdown-menu hidden top-[54px] w-full rounded-lg bg-white shadow-lg">
+        ${
+          options.map((option) => {
+            return `<li><a class="dropdown-item flex px-4 py-[10px] hover:bg-[#F1F2F5]" href="#">${option}</a></li>`
+          }).join('')
+        }
+      </ul>
+    </div>
+  `
+  el.insertAdjacentHTML('beforeend', dropdownHtml)
+
+  // 방금 추가된 드롭다운 요소를 찾기
+  const newDropdown = el.querySelector('.dropdown:last-child');
+
+  // 토글 버튼-새로 추가된 드롭다운 내부에서 버튼을 찾음
+  const toggleBtn = newDropdown.querySelector('.dropdown-toggle');
+  // 드롭다운 메뉴
+  const dropdownMenu = newDropdown.querySelector('.dropdown-menu');
+  // 토글 버튼 이벤트
+  toggleBtn.addEventListener('click', () => {
+    dropdownMenu.classList.toggle('hidden');
+
+    // 토글 버튼 svg 아이콘을 180도 회전시키거나 원래대로 되돌림
+    toggleBtn.querySelector('svg').classList.toggle('rotate-180');
+  });
+
+}
+
+export default Accordion
